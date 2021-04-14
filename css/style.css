@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../assets/bg.svg);
+    background-repeat: repeat-y;
+    background-position: center top;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: Lausanne 500;
+    src: url('../fonts/500/Lausanne-500.eot');
+    src: url('../fonts/500/Lausanne-500.woff') format('woff'),
+         url('../fonts/500/Lausanne-500.woff2') format('woff2'),
+         url('../fonts/500/Lausanne-500.svg') format('svg'),
+         url('../fonts/500/Lausanne-500.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Lausanne 800;
+    src: url('../fonts/800/Lausanne-800.eot');
+    src: url('../fonts/800/Lausanne-800.woff') format('woff'),
+         url('../fonts/800/Lausanne-800.woff2') format('woff2'),
+         url('../fonts/800/Lausanne-800.svg') format('svg'),
+         url('../fonts/800/Lausanne-800.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1{
+    font-family: 'Lausanne 800', Arial, sans-serif;
+    font-size: 42px;
+    color: #ffffff;
+    line-height: 36px;
+    text-align: center;
+    line-height: 52px;
+    margin: 100px 100px 0px 100px;
+}
+
+#content{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#a-text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+    margin-top: 80px;
+}
+
+button{
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: none;
+    background-color: #009d00;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    max-width: 300px;
+}
+
+button.answer:hover{
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: none;
+    background-color: #008000;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    max-width: 300px;
+}

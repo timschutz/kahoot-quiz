@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<allQuestions>
+		<question txt="What does the “https://” at the beginning of a URL denote?">
+			<answer>That the site has special high definition</answer>
+			<answer id="correct">That information entered into the site is encrypted</answer>
+			<answer>That the site is the newest version available</answer>
+			<answer>That the site is not accessible to certain computers</answer>
+			<answer>None of the above</answer>
+		</question>
+		<question txt="Which of the following is an example of a “phishing” attack?">
+			<answer>Sending someone an email that contains a malicious link that is disguised to look like an email from someone the person knows</answer>
+			<answer>Creating a fake website that looks nearly identical to a real website in order to trick users into entering their login information</answer>
+			<answer>Sending someone a text message that contains a malicious link that is disguised to look like a notification that the person has won a contest</answer>
+			<answer id="correct">All of the above</answer>
+			<answer>Not sure</answer>
+		</question>
+		<question txt="A group of computers that is networked together and used by hackers to steal information is called a…">
+			<answer id="correct">Botnet</answer>
+			<answer>Rootkit</answer>
+			<answer>DDoS</answer>
+			<answer>Operating system</answer>
+			<answer>Not sure</answer>
+		</question>
+		<question txt="Which of the following four passwords is the most secure?">
+			<answer>Boat123</answer>
+			<answer id="correct">WTh!5Z</answer>
+			<answer>into*48</answer>
+			<answer>123456</answer>
+		</question>
+		<question txt="Criminals access someone’s computer and encrypt the user’s personal files and data. The user is unable to access this data unless they pay the criminals to decrypt the files. This practice is called …">
+			<answer>Botnet</answer>
+			<answer id="correct">Ransomware</answer>
+			<answer>Driving</answer>
+			<answer>Spam</answer>
+			<answer>None of the above</answer>
+			<answer>Not sure</answer>
+		</question>
+	</allQuestions>
+	
