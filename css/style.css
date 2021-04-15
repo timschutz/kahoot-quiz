@@ -1,10 +1,10 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../assets/bg.svg);
+    background-image: url(../assets/bg.png);
     background-repeat: repeat-y;
     background-position: center top;
-    background-size: cover;
+    background-size: 100%;
 }
 
 @font-face {
@@ -33,10 +33,10 @@ h1{
     font-family: 'Lausanne 800', Arial, sans-serif;
     font-size: 42px;
     color: #ffffff;
-    line-height: 36px;
+    line-height: 32px;
     text-align: center;
     line-height: 52px;
-    margin: 100px 100px 0px 100px;
+    margin: 100px 300px 0px 300px;
 }
 
 #content{
@@ -65,6 +65,8 @@ button{
     cursor: pointer;
     outline: none;
     max-width: 300px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 button.answer:hover{
@@ -80,4 +82,78 @@ button.answer:hover{
     cursor: pointer;
     outline: none;
     max-width: 300px;
+}
+
+.buttonCorrect{
+    background-image: url(../assets/check.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 24px;
+    color: #009d00;
+    background-color: #ffffff;
+    display: inline-block;
+    max-width: 300px;
+    pointer-events: none;
+    border: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.buttonIncorrect{
+    background-image: url(../assets/close.svg);
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 24px;
+    color: #313131;
+    background-color: #808080;
+    display: inline-block;
+    max-width: 300px;
+    pointer-events: none;
+    border: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.buttonGrey{
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 24px;
+    color: #313131;
+    background-color: #808080;
+    display: inline-block;
+    max-width: 300px;
+    pointer-events: none;
+    border: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+#cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#continueButton{
+    padding: 15px 25px 15px 25px;
+    margin-top: 30px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: none;
+    background-color: #008000;
+    cursor: pointer;
+    outline: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }

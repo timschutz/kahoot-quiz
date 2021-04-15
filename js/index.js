@@ -1,5 +1,10 @@
+let genClick = new Audio('audio/mfx_tic33.mp3');
+let sndCorrect = new Audio('audio/535840__evretro__8-bit-mini-win-sound-effect.mp3');
+let sndIncorrect = new Audio('audio/450616__breviceps__8-bit-error.mp3');
+
 let Qcontainer = document.getElementById('q-text');
 let Acontainer = document.getElementById('a-text');
+let CBcontainer = document.getElementById('cont');
 
 let xml = '';
 let numQuestions = 0;
@@ -30,7 +35,7 @@ function buildQuestionElements(x){
   questionBlock.setAttribute('id', 'question');
   questionBlock.innerText = questionData[qNum].getAttribute('txt');
   Qcontainer.appendChild(questionBlock);
-  gsap.from(Qcontainer, {opacity: 0, scale: 0.2, duration: 2, delay: 1, ease: "elastic.out(1, 0.4)"});
+  gsap.from(Qcontainer, {opacity: 0, scale: 0.2, duration: 1, delay: 1, ease: "elastic.out"});
   
   //extract answers text and display
 
@@ -52,36 +57,90 @@ function buildQuestionElements(x){
 // check if the correct answer selected
 
 function checkIfCorrect(){
+  genClick.play();
+
   let isCorrect = this.getAttribute('id');
-  //**** remove eventlistener ****
+  let clicked = this;
+
   if(isCorrect == 'correct'){
     correct();
   }else{
-    incorrect();
+    incorrect(clicked);
   }
 }
 
 // if correct, do this
 
 function correct(){
-  //**** add check to correct ****
-  //**** change id of other choices to grey them out ****
-  //**** scale down incorrect choices by 0.98 ****
-  //**** play correct sound ****
-  //**** add continue button ****
-  removeOldQuestion();
+  sndCorrect.play();
+
+  let isCorrect = document.getElementById('correct');
+  isCorrect.className = 'buttonCorrect';
+
+  let remContainer = document.getElementById('a-text');
+  let remCount = remContainer.children.length;
+
+  for(let i=0; i<remCount; i++){
+    remContainer.children[i].removeEventListener('click', checkIfCorrect);
+    if(remContainer.children[i].id == 'null'){
+      remContainer.children[i].className = 'buttonGrey';
+    }
+  }
+
+  showContButton()
 }
 
 // if incorrect, do this
 
-function incorrect(){
-  //**** add check to correct ****
-  //**** add X to incorrect ****
-  //**** change id of other choices to grey them out ****
-  //**** scale down incorrect choices by 0.98 ****
-  //**** play incorrect sound ****
-  //**** add continue button ****
-  removeOldQuestion();  
+function incorrect(x){
+  sndIncorrect.play();
+
+  let isCorrect = document.getElementById('correct');
+  isCorrect.className = 'buttonCorrect';
+  
+  let remContainer = document.getElementById('a-text');
+  let remCount = remContainer.children.length;
+
+  for(let i=0; i<remCount; i++){
+    remContainer.children[i].removeEventListener('click', checkIfCorrect);
+    if(remContainer.children[i].id == 'null'){
+      remContainer.children[i].className = 'buttonGrey';
+    }
+  }
+
+  x.className = 'buttonIncorrect';
+
+  showContButton()
+}
+
+// display continue button
+
+function showContButton(){
+  let contBtn = document.createElement('button');
+  contBtn.innerHTML = "Continue";
+  contBtn.setAttribute('id', 'continueButton');
+  contBtn.addEventListener('click', animElementsOff, false);
+  CBcontainer.appendChild(contBtn);
+  gsap.from(contBtn, {opacity: 0, scale: 0.6, duration: 0.6, delay: 1.5, ease: "expo"});
+}
+
+// animate all elements off screen
+
+function animElementsOff(){
+  genClick.play();
+
+  let animOff = document.getElementById('question');
+  gsap.to(animOff, {opacity: 0, scale: 0.4, duration: 0.5, ease: "back.in"});
+
+  let remContainer = document.getElementById('a-text');
+  let remCount = remContainer.children.length;
+
+  for(let i=0; i<remCount; i++){
+    gsap.to(remContainer.children[i], {opacity: 0, scale: 0.4, duration: 0.5, delay: 0.5 + (i * 0.1), ease: "back.in"});
+  }
+
+  let animContOff = document.getElementById('continueButton');
+  gsap.to(animContOff, {opacity: 0, scale: 0.4, duration: 0.5, delay: 1.5, ease: "back.in", onComplete: removeOldQuestion});
 }
 
 // remove the question and answers and load 
@@ -89,6 +148,7 @@ function incorrect(){
 
 function removeOldQuestion(){
   document.getElementById('question').remove();
+  document.getElementById('continueButton').remove();
   
   let remContainer = document.getElementById('a-text');
   let remCount = remContainer.children.length;
@@ -98,6 +158,7 @@ function removeOldQuestion(){
   }
   
   if(qNum == numQuestions - 1){
+    //**** ADD FINAL SCREEN */
     let finalDiv = document.createElement('h1');
     finalDiv.innerText = 'Congrats! You are done!';
     Qcontainer.appendChild(finalDiv);
