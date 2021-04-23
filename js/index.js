@@ -10,6 +10,10 @@ let xml = '';
 let numQuestions = 0;
 let qNum = 0;
 
+// init scorm
+
+pipwerks.SCORM.init();
+
 // loading the XML
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -159,7 +163,13 @@ function removeOldQuestion(){
   
   if(qNum == numQuestions - 1){
     //**** ADD FINAL SCREEN */
+
+    
+    pipwerks.SCORM.status("set", "completed");
     pipwerks.SCORM.quit();
+
+
+
     let finalDiv = document.createElement('h1');
     finalDiv.innerText = 'Congrats! You are done!';
     Qcontainer.appendChild(finalDiv);
