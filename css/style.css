@@ -1,46 +1,29 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../assets/bg.png);
-    background-repeat: repeat-y;
-    background-position: center top;
-    background-size: 100%;
-}
-
-@font-face {
-    font-family: Lausanne 500;
-    src: url('../fonts/500/Lausanne-500.eot');
-    src: url('../fonts/500/Lausanne-500.woff') format('woff'),
-         url('../fonts/500/Lausanne-500.woff2') format('woff2'),
-         url('../fonts/500/Lausanne-500.svg') format('svg'),
-         url('../fonts/500/Lausanne-500.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Lausanne 800;
-    src: url('../fonts/800/Lausanne-800.eot');
-    src: url('../fonts/800/Lausanne-800.woff') format('woff'),
-         url('../fonts/800/Lausanne-800.woff2') format('woff2'),
-         url('../fonts/800/Lausanne-800.svg') format('svg'),
-         url('../fonts/800/Lausanne-800.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    background-color: #313131;
 }
 
 h1{
-    font-family: 'Lausanne 800', Arial, sans-serif;
-    font-size: 36px;
-    color: #ffffff;
+    font-size: 18px;
+    color: #000000;
     text-align: center;
-    line-height: 42px;
-    margin: 100px 120px 0px 120px;
+    line-height: 22px;
 }
 
-#content{
-    margin-left: 60px;
-    margin-right: 60px;
+.q-container{
+    display: flex;
+    width: 100%;
+    padding: 50px 100px 0px 100px;
+    background-color: #cecece;
+}
+
+.q-text{
+    width: 50%;
+}
+
+.q-img{
+    width: 50%;
 }
 
 #a-text{
@@ -48,92 +31,39 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
-button{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border: none;
-    background-color: #009d00;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
+.is-primary{
+    font-size: 14px;
     max-width: 300px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
-button.answer:hover{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border: none;
-    background-color: #008000;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
+.is-success{
+    font-size: 14px;
     max-width: 300px;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
-.buttonCorrect{
-    background-image: url(../assets/check.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #009d00;
-    background-color: #ffffff;
-    display: inline-block;
+.is-error{
+    font-size: 14px;
     max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
-.buttonIncorrect{
-    background-image: url(../assets/close.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #313131;
-    background-color: #808080;
-    display: inline-block;
+.is-disabled{
+    font-size: 14px;
     max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
 .buttonGrey{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #313131;
-    background-color: #808080;
-    display: inline-block;
-    max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    color: cyan;
 }
 
 #cont{
@@ -145,14 +75,5 @@ button.answer:hover{
 #continueButton{
     padding: 15px 25px 15px 25px;
     margin-top: 30px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border: none;
-    background-color: #008000;
-    cursor: pointer;
-    outline: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    font-size: 14px;
 }
