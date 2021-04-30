@@ -1,10 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../assets/bg.png);
-    background-repeat: repeat-y;
-    background-position: center top;
-    background-size: 100%;
+    background-color: #313131;
 }
 
 @font-face {
@@ -18,29 +15,138 @@ body {
     font-style: normal;
 }
 
-@font-face {
-    font-family: Lausanne 800;
-    src: url('../fonts/800/Lausanne-800.eot');
-    src: url('../fonts/800/Lausanne-800.woff') format('woff'),
-         url('../fonts/800/Lausanne-800.woff2') format('woff2'),
-         url('../fonts/800/Lausanne-800.svg') format('svg'),
-         url('../fonts/800/Lausanne-800.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 h1{
-    font-family: 'Lausanne 800', Arial, sans-serif;
-    font-size: 36px;
-    color: #ffffff;
+    font-size: 18px;
+    color: #000000;
     text-align: center;
-    line-height: 42px;
-    margin: 100px 120px 0px 120px;
+    line-height: 22px;
 }
 
-#content{
-    margin-left: 60px;
-    margin-right: 60px;
+.start-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/startbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-color: #009d00;
+}
+
+.start-text{
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 18px;
+    line-height: 26px;
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.q-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 50px 0px 0px 0px;
+    background-image: url(../assets/ltbg.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #009d00;
+}
+
+#q-img{
+    width: 50%;
+}
+
+#q-text{
+    font-family: "Press Start 2P", sans-serif;
+    width: 50%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.balloon {
+    padding: 15px; 
+    box-sizing: border-box;
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 5px #fff, 0 10px #000, 0 -5px #fff, 0 -10px #000, -5px 0 #fff,
+      -10px 0 #000, 5px 0 #fff, 10px 0 #000, 5px 5px #000, -5px -5px #000,
+      -5px 5px #000, 5px -5px #000;
+}
+
+.balloon-right:after {
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 5px;
+    height: 5px;
+}
+
+.balloon-right:after {
+    bottom: -15px;
+    right: 10%;
+    box-shadow: 5px -5px #fff, 10px -5px #fff, 15px -5px #fff, 20px -5px #fff, 25px -5px #fff,
+      0 5px #000, 5px 0px #fff, 10px 0px #fff, 15px 0px #fff, 20px 0px #fff, 25px 0px #fff,
+      5px 10px #000, 5px 5px #fff, 10px 5px #fff, 15px 5px #fff, 20px 5px #fff, 25px 5px #fff,
+      10px 15px #000, 10px 10px #fff, 15px 10px #fff, 20px 10px #fff, 25px 10px #fff, 30px 10px #fff,
+      15px 20px #000, 15px 15px #fff, 20px 15px #fff, 25px 15px #fff, 30px 15px #fff, 35px 15px #fff,
+      20px 20px #000, 25px 20px #000, 30px 20px #000, 35px 20px #000,
+      40px 20px #000, 40px 15px #000, 35px 10px #000, 30px 5px #000, 30px 0 #000;
+}
+
+#q-img{
+    width: 50%;
+}
+
+#q-sheet{
+    width: 500px;
+    height: 314px;
+    background-image: url(../assets/spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.a-idle{
+    animation: anim-idle 1s steps(1) 1;
+}
+
+.a-question{
+    animation: anim-question 1s steps(4) infinite;
+}
+
+.a-success{
+    animation: anim-success 1s steps(2) infinite;
+}
+
+.a-fail{
+    animation: anim-fail 1s steps(4) infinite;
+}
+
+@keyframes anim-idle {
+    from { background-position: 0px 0px; }
+    to { background-position: 0px 0px; }
+}
+
+@keyframes anim-question {
+    from { background-position: -500px 0px; }
+    to { background-position: -2500px 0px; }
+}
+
+@keyframes anim-success {
+    from { background-position: -2500px 0px; }
+    to { background-position: -3500px 0px; }
+}
+
+@keyframes anim-fail {
+    from { background-position: -3500px 0px; }
+    to { background-position: -5500px 0px; }
 }
 
 #a-text{
@@ -48,92 +154,45 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
-button{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
+.btn-global{
     font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border: none;
-    background-color: #009d00;
-    display: inline-block;
+    background: #005fe4;
     cursor: pointer;
-    outline: none;
-    max-width: 300px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-button.answer:hover{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: rgb(255, 255, 255);
+    text-align: center;
     text-decoration: none;
-    border: none;
-    background-color: #008000;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
+    color: white;
+    font-size: 16px;
     max-width: 300px;
+    padding: 25px 20px 25px 20px;
+    margin: 5px;
+    box-shadow: inset 4px 4px #1f84ff;
+    border: 4px solid black;
 }
 
-.buttonCorrect{
-    background-image: url(../assets/check.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #009d00;
-    background-color: #ffffff;
-    display: inline-block;
-    max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.btn-success{
+    background: #009d00;
+    color: white;
+    box-shadow: inset 4px 4px #4fe709;
 }
 
-.buttonIncorrect{
-    background-image: url(../assets/close.svg);
-    background-size: 35px 35px;
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #313131;
-    background-color: #808080;
-    display: inline-block;
-    max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.btn-fail{
+    background: #ff4e00;
+    color: white;
+    box-shadow: inset 4px 4px #ff7b47;
 }
 
-.buttonGrey{
-    padding: 30px 40px 30px 40px;
-    margin: 5px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 18px;
-    color: #313131;
-    background-color: #808080;
-    display: inline-block;
-    max-width: 300px;
-    pointer-events: none;
-    border: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.btn-disabled{
+    cursor: auto;
+    background: #adadad;
+    color: #727272;
+    box-shadow: inset 4px 4px #cecece;
+}
+
+.btn-kill-pointer{
+    cursor: auto;
 }
 
 #cont{
@@ -145,14 +204,7 @@ button.answer:hover{
 #continueButton{
     padding: 15px 25px 15px 25px;
     margin-top: 30px;
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border: none;
-    background-color: #008000;
-    cursor: pointer;
-    outline: none;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    font-size: 14px;
 }
+
+  
