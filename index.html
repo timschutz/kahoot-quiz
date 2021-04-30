@@ -6,7 +6,7 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <!-- <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" /> -->
   <link href="css/style.css" rel="stylesheet" type="text/css">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,25 +15,26 @@
   <script type="text/javascript">pipwerks.SCORM.version = "1.2";</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 </head>
 
 
 <body>
-
-
-  
-<div id='content'>
+  <div id='start-container' class='start-page'>
+    <div><img src="assets/start_peep.png" alt="###"></div>
+    <div class='start-text'>We're going to ask you a few questions here and see how you're doing. Click the button below to begin.</div>
+    <div id='start'></div>
+  </div>
   <div class='q-container'>
     <div id='q-text'></div>
     <div id='q-img'>
-      <img src="assets/soc.png" alt="###">
+      <div id='q-sheet'></div>
     </div>
   </div>
-  <div id='a-text'></div>
-  <div id='cont'></div>
-</div>  
-
-
+  <div id='content'>
+    <div id='a-text'></div>
+    <div id='cont'></div>
+  </div>
 
 
 </body>
