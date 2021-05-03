@@ -172,6 +172,21 @@ h1{
     border: 4px solid black;
 }
 
+.btn-util{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    background: #d8d8d8;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #313131;
+    font-size: 16px;
+    max-width: 300px;
+    padding: 30px 40px 30px 40px;
+    margin: 5px;
+    box-shadow: inset 4px 4px #ffffff;
+    border: 4px solid black;
+}
+
 .btn-success{
     background: #009d00;
     color: white;
@@ -186,9 +201,9 @@ h1{
 
 .btn-disabled{
     cursor: auto;
-    background: #adadad;
-    color: #727272;
-    box-shadow: inset 4px 4px #cecece;
+    background: #727272;
+    color: #505050;
+    box-shadow: inset 4px 4px #969696;
 }
 
 .btn-kill-pointer{
@@ -202,9 +217,84 @@ h1{
 }
 
 #continueButton{
-    padding: 15px 25px 15px 25px;
-    margin-top: 30px;
-    font-size: 14px;
+    padding: 8px 30px 8px 30px;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
-  
+#q-prompt{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #808080;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.multi-global{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    color: #cecece;
+    background: #313131;
+    cursor: pointer;
+    border: none;
+    line-height: 20px;
+    margin: 0px 200px 15px 200px;
+    padding-left: 75px;
+}
+
+.btn-multi{
+    background-image: url(../assets/multi_up.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected{
+    background-image: url(../assets/multi_sel.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected_correct{
+    background-image: url(../assets/multi_sel_correct.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected_incorrect{
+    background-image: url(../assets/multi_sel_incorrect.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-up_correct{
+    background-image: url(../assets/multi_up_correct.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-up_incorrect{
+    background-image: url(../assets/multi_up_incorrect.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-hover{
+    background-image: url(../assets/multi_hover.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}

@@ -4,17 +4,6 @@ body {
     background-color: #313131;
 }
 
-@font-face {
-    font-family: Lausanne 500;
-    src: url('../fonts/500/Lausanne-500.eot');
-    src: url('../fonts/500/Lausanne-500.woff') format('woff'),
-         url('../fonts/500/Lausanne-500.woff2') format('woff2'),
-         url('../fonts/500/Lausanne-500.svg') format('svg'),
-         url('../fonts/500/Lausanne-500.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 h1{
     font-size: 18px;
     color: #000000;
@@ -22,37 +11,11 @@ h1{
     line-height: 22px;
 }
 
-.start-page{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url(../assets/startbg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    background-color: #009d00;
-}
-
-.start-text{
-    font-family: "Press Start 2P", sans-serif;
-    font-size: 18px;
-    line-height: 26px;
-    color: #ffffff;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
 .q-container{
     display: flex;
     width: 100%;
     height: auto;
-    padding: 50px 0px 0px 0px;
+    padding: 50px 100px 0px 100px;
     background-image: url(../assets/ltbg.png);
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -60,45 +23,8 @@ h1{
     background-color: #009d00;
 }
 
-#q-img{
-    width: 50%;
-}
-
 #q-text{
-    font-family: "Press Start 2P", sans-serif;
-    width: 50%;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.balloon {
-    padding: 15px; 
-    box-sizing: border-box;
-    position: relative;
-    background-color: #ffffff;
-    box-shadow: 0 5px #fff, 0 10px #000, 0 -5px #fff, 0 -10px #000, -5px 0 #fff,
-      -10px 0 #000, 5px 0 #fff, 10px 0 #000, 5px 5px #000, -5px -5px #000,
-      -5px 5px #000, 5px -5px #000;
-}
-
-.balloon-right:after {
-    content: "";
-    position: absolute;
-    background: #000;
-    width: 5px;
-    height: 5px;
-}
-
-.balloon-right:after {
-    bottom: -15px;
-    right: 10%;
-    box-shadow: 5px -5px #fff, 10px -5px #fff, 15px -5px #fff, 20px -5px #fff, 25px -5px #fff,
-      0 5px #000, 5px 0px #fff, 10px 0px #fff, 15px 0px #fff, 20px 0px #fff, 25px 0px #fff,
-      5px 10px #000, 5px 5px #fff, 10px 5px #fff, 15px 5px #fff, 20px 5px #fff, 25px 5px #fff,
-      10px 15px #000, 10px 10px #fff, 15px 10px #fff, 20px 10px #fff, 25px 10px #fff, 30px 10px #fff,
-      15px 20px #000, 15px 15px #fff, 20px 15px #fff, 25px 15px #fff, 30px 15px #fff, 35px 15px #fff,
-      20px 20px #000, 25px 20px #000, 30px 20px #000, 35px 20px #000,
-      40px 20px #000, 40px 15px #000, 35px 10px #000, 30px 5px #000, 30px 0 #000;
+    width: auto;
 }
 
 #q-img{
@@ -132,22 +58,22 @@ h1{
 @keyframes anim-idle {
     from { background-position: 0px 0px; }
     to { background-position: 0px 0px; }
-}
+  }
 
-@keyframes anim-question {
+  @keyframes anim-question {
     from { background-position: -500px 0px; }
     to { background-position: -2500px 0px; }
-}
+  }
 
-@keyframes anim-success {
+  @keyframes anim-success {
     from { background-position: -2500px 0px; }
     to { background-position: -3500px 0px; }
-}
+  }
 
-@keyframes anim-fail {
+  @keyframes anim-fail {
     from { background-position: -3500px 0px; }
     to { background-position: -5500px 0px; }
-}
+  }
 
 #a-text{
     display: flex;
@@ -157,42 +83,32 @@ h1{
     margin-top: 40px;
 }
 
-.btn-global{
-    font-family: 'Lausanne 500', Arial, sans-serif;
-    background: #005fe4;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
+.is-primary{
+    font-size: 14px;
     max-width: 300px;
-    padding: 25px 20px 25px 20px;
+    padding: 15px 20px 15px 20px;
     margin: 5px;
-    box-shadow: inset 4px 4px #1f84ff;
-    border: 4px solid black;
 }
 
-.btn-success{
-    background: #009d00;
-    color: white;
-    box-shadow: inset 4px 4px #4fe709;
+.is-success{
+    font-size: 14px;
+    max-width: 300px;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
-.btn-fail{
-    background: #ff4e00;
-    color: white;
-    box-shadow: inset 4px 4px #ff7b47;
+.is-error{
+    font-size: 14px;
+    max-width: 300px;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
-.btn-disabled{
-    cursor: auto;
-    background: #adadad;
-    color: #727272;
-    box-shadow: inset 4px 4px #cecece;
-}
-
-.btn-kill-pointer{
-    cursor: auto;
+.is-disabled{
+    font-size: 14px;
+    max-width: 300px;
+    padding: 15px 20px 15px 20px;
+    margin: 5px;
 }
 
 #cont{
@@ -206,5 +122,6 @@ h1{
     margin-top: 30px;
     font-size: 14px;
 }
+
 
   
