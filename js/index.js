@@ -213,7 +213,7 @@ function removeOldQuestion(){
   if(qNum == numQuestions - 1){
     
     pipwerks.SCORM.status("set", "completed");
-    pipwerks.SCORM.quit();
+    // pipwerks.SCORM.quit();
 
     bgLoop.pause();
 

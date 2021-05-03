@@ -1,10 +1,14 @@
-let genClick = new Audio('audio/mfx_tic33.mp3');
-let sndCorrect = new Audio('audio/535840__evretro__8-bit-mini-win-sound-effect.mp3');
-let sndIncorrect = new Audio('audio/450616__breviceps__8-bit-error.mp3');
+var genClick = new Howl({src: ['audio/mfx_tic33.mp3']});
+var sndCorrect = new Howl({src: ['audio/535840__evretro__8-bit-mini-win-sound-effect.mp3']});
+var sndIncorrect = new Howl({src: ['audio/450616__breviceps__8-bit-error.mp3']});
+var sndComplete = new Howl({src: ['audio/complete.mp3']});
+var bgLoop = new Howl({src: ['audio/bg_loop2.ogg'],loop: true,});
 
 let Qcontainer = document.getElementById('q-text');
 let Acontainer = document.getElementById('a-text');
 let CBcontainer = document.getElementById('cont');
+let STARTbutton = document.getElementById('start');
+let STARTcontainer = document.getElementById('start-container');
 let ANIMcontainer = document.getElementById('q-sheet');
 
 let xml = '';
@@ -17,19 +21,47 @@ pipwerks.SCORM.init();
 
 // loading the XML
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  let url = 'question_content.xml';
+document.addEventListener('DOMContentLoaded', ()=>{let url = 'question_content.xml';
   fetch(url)
   .then(response=>response.text())
   .then(data=>{
     let parser = new DOMParser();
     xml = parser.parseFromString(data, "application/xml");
-    buildQuestionElements(xml);
+    // buildQuestionElements(xml);
+    startPage(xml);
 
     let qCount = xml.children[0].getElementsByTagName('question');
     numQuestions = qCount.length;
   });
 })
+
+// start page
+
+function startPage(xml){
+  let startBtn = document.createElement('button');
+  startBtn.innerHTML = "Begin";
+  startBtn.className = 'btn-global';
+  startBtn.addEventListener('click', function (){
+    beginQuiz(xml);
+  });
+  startBtn.setAttribute('onmouseover', 'btnBig(this)');
+  startBtn.setAttribute('onmouseout', 'btnSm(this)');
+  STARTbutton.appendChild(startBtn);
+}
+
+// load questions and begin the quiz
+
+function beginQuiz(xml){
+  buildQuestionElements(xml);
+  bgLoop.play();
+  gsap.to(STARTcontainer, {opacity: 0, duration: 2, ease: "expo", onComplete: remStart});
+}
+
+// remove the start page
+
+function remStart(){
+  STARTcontainer.remove();
+}
 
 function buildQuestionElements(x){
 
@@ -38,7 +70,7 @@ function buildQuestionElements(x){
   let questionData = x.children[0].getElementsByTagName('question');
   let questionBlock = document.createElement('h1');
   questionBlock.setAttribute('id', 'question');
-  questionBlock.className = 'nes-balloon from-right';
+  questionBlock.className = 'balloon balloon-right';
   questionBlock.innerText = questionData[qNum].getAttribute('txt');
   Qcontainer.appendChild(questionBlock);
   gsap.from(Qcontainer, {opacity: 0, scale: 0.2, duration: 1, delay: 1, ease: "expo", onComplete: animQuestion});
@@ -49,7 +81,7 @@ function buildQuestionElements(x){
 
   for(let i=0; i<answerData.length; i++){
     let answerList = document.createElement('button');
-    answerList.className = 'answer nes-btn is-primary';
+    answerList.className = 'answer btn-global';
     answerList.setAttribute('id', answerData[i].getAttribute('id'));
     answerList.setAttribute('onmouseover', 'btnBig(this)');
     answerList.setAttribute('onmouseout', 'btnSm(this)');
@@ -81,7 +113,9 @@ function correct(){
   sndCorrect.play();
 
   let isCorrect = document.getElementById('correct');
-  isCorrect.className = 'buttonCorrect nes-btn is-success';
+  isCorrect.className = 'buttonCorrect btn-global btn-success btn-kill-pointer';
+  isCorrect.removeAttribute('onmouseover');
+  isCorrect.removeAttribute('onmouseout');
 
   let remContainer = document.getElementById('a-text');
   let remCount = remContainer.children.length;
@@ -89,7 +123,9 @@ function correct(){
   for(let i=0; i<remCount; i++){
     remContainer.children[i].removeEventListener('click', checkIfCorrect);
     if(remContainer.children[i].id == 'null'){
-      remContainer.children[i].className = 'buttonGrey nes-btn is-disabled';
+      remContainer.children[i].className = 'buttonGrey btn-global btn-disabled';
+      remContainer.children[i].removeAttribute('onmouseover');
+      remContainer.children[i].removeAttribute('onmouseout');
     }
   }
 
@@ -103,7 +139,9 @@ function incorrect(x){
   sndIncorrect.play();
 
   let isCorrect = document.getElementById('correct');
-  isCorrect.className = 'buttonCorrect nes-btn is-success';
+  isCorrect.className = 'buttonCorrect btn-global btn-success btn-kill-pointer';
+  isCorrect.removeAttribute('onmouseover');
+  isCorrect.removeAttribute('onmouseout');
   
   let remContainer = document.getElementById('a-text');
   let remCount = remContainer.children.length;
@@ -111,11 +149,13 @@ function incorrect(x){
   for(let i=0; i<remCount; i++){
     remContainer.children[i].removeEventListener('click', checkIfCorrect);
     if(remContainer.children[i].id == 'null'){
-      remContainer.children[i].className = 'buttonGrey nes-btn is-disabled';
+      remContainer.children[i].className = 'buttonGrey btn-global btn-disabled';
+      remContainer.children[i].removeAttribute('onmouseover');
+      remContainer.children[i].removeAttribute('onmouseout');
     }
   }
 
-  x.className = 'buttonIncorrect nes-btn is-error';
+  x.className = 'buttonIncorrect btn-global btn-fail btn-kill-pointer';
 
   showContButton();
   animFail();
@@ -127,8 +167,10 @@ function showContButton(){
   let contBtn = document.createElement('button');
   contBtn.innerHTML = "Continue";
   contBtn.setAttribute('id', 'continueButton');
-  contBtn.className = 'nes-btn is-primary';
+  contBtn.className = 'btn-global';
   contBtn.addEventListener('click', animElementsOff, false);
+  contBtn.setAttribute('onmouseover', 'btnBig(this)');
+  contBtn.setAttribute('onmouseout', 'btnSm(this)');
   CBcontainer.appendChild(contBtn);
   gsap.from(contBtn, {opacity: 0, scale: 0.6, duration: 0.6, delay: 1.5, ease: "expo"});
 }
@@ -137,6 +179,7 @@ function showContButton(){
 
 function animElementsOff(){
   animIdle();
+
   genClick.play();
 
   let animOff = document.getElementById('question');
@@ -168,15 +211,18 @@ function removeOldQuestion(){
   }
   
   if(qNum == numQuestions - 1){
-
     
     pipwerks.SCORM.status("set", "completed");
-    pipwerks.SCORM.quit();
+    // pipwerks.SCORM.quit();
 
+    bgLoop.pause();
 
     animSuccess();
+
+    sndComplete.play();
+
     let finalDiv = document.createElement('h1');
-    finalDiv.className = 'nes-balloon from-right';
+    finalDiv.className = 'balloon balloon-right';
     finalDiv.innerText = 'Way to go champ! You finished!!';
     Qcontainer.appendChild(finalDiv);
   }else{
