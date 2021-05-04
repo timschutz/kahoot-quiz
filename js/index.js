@@ -15,6 +15,9 @@ let xml = '';
 let numQuestions = 0;
 let qNum = 0;
 let multiClicked = false;
+let inputClicked = false;
+let userInput = '';
+let expertInput = '';
 
 // init scorm
 
@@ -41,7 +44,7 @@ document.addEventListener('DOMContentLoaded', ()=>{let url = 'question_content.x
 function startPage(xml){
   let startBtn = document.createElement('button');
   startBtn.innerHTML = "Begin";
-  startBtn.className = 'btn-global';
+  startBtn.className = 'btn-start';
   startBtn.addEventListener('click', function (){
     beginQuiz(xml);
   });
@@ -86,11 +89,21 @@ function buildQuestionElements(x){
     qPrompt.appendChild(qText);
     Acontainer.appendChild(qPrompt);
     gsap.from(qPrompt, {opacity: 0, duration: 0.8, delay: 2.5, ease: "expo"});
+  }else if(qType == 'input'){
+    let qPrompt = document.createElement('div');
+    qPrompt.setAttribute('id', 'q-prompt');
+    let qText = document.createTextNode("Type your answer below.");
+    qPrompt.appendChild(qText);
+    Acontainer.appendChild(qPrompt);
+    gsap.from(qPrompt, {opacity: 0, duration: 0.8, delay: 2.5, ease: "expo"});
   }
   
   //extract answers text and display
 
   let answerData = x.children[0].children[qNum].getElementsByTagName('answer');
+
+  // extracting the expert answer for the user input type
+  expertInput = answerData[0].innerHTML;
 
   for(let i=0; i<answerData.length; i++){
     let answerList = document.createElement('button');
@@ -102,6 +115,9 @@ function buildQuestionElements(x){
       answerList.setAttribute('onmouseover', 'btnBig(this)');
       answerList.setAttribute('onmouseout', 'btnSm(this)');
       answerList.addEventListener('click', checkIfCorrect, false);
+      answerList.innerText = answerData[i].innerHTML;
+      Acontainer.appendChild(answerList);
+      gsap.from(answerList, {opacity: 0, scale: 0.8, duration: 0.8, delay: 3 + (i * 0.1), ease: "expo"});
     }else if(qType == 'multi'){
       // console.log('MULTI');
       answerList.className = 'answer multi-global btn-multi';
@@ -110,15 +126,122 @@ function buildQuestionElements(x){
       answerList.setAttribute('onmouseout', 'multiOut(this)');
       answerList.setAttribute('wasClicked', 'false');
       answerList.addEventListener('click', multiChoiceClicked, false);
+      answerList.innerText = answerData[i].innerHTML;
+      Acontainer.appendChild(answerList);
+      gsap.from(answerList, {opacity: 0, scale: 0.8, duration: 0.8, delay: 3 + (i * 0.1), ease: "expo"});
     }else{
-      // console.log('OTHER');
+      // console.log('INPUT');
+      displayInputBox();
     }
-
-    // answerList.addEventListener('click', checkIfCorrect, false);
-    answerList.innerText = answerData[i].innerHTML;
-    Acontainer.appendChild(answerList);
-    gsap.from(answerList, {opacity: 0, scale: 0.8, duration: 0.8, delay: 3 + (i * 0.1), ease: "expo"});
   }
+}
+
+// =======================================================
+// ===================== USER INPUT ======================
+// =======================================================
+
+function displayInputBox(){
+  let inputContainer = document.createElement('div');
+  inputContainer.className = 'input-container';
+  inputContainer.setAttribute('id', 'input-cont');
+  Acontainer.appendChild(inputContainer);
+
+  let inputBox = document.createElement('textarea');
+  inputBox.setAttribute('type', 'text');
+  inputBox.setAttribute('id', 'u-input');
+  inputBox.className = 'user-input';
+  inputBox.addEventListener('keypress', checkSubmit);
+  inputContainer.appendChild(inputBox);
+  
+  gsap.from(inputBox, {opacity: 0, duration: 0.8, delay: 3, ease: "expo"});
+}
+
+function checkSubmit(){
+  userInput = document.getElementById('u-input').value;
+  if(inputClicked == false){
+    showInputSubmitButton();
+    inputClicked = true;
+  }
+}
+
+function showInputSubmitButton(){
+  let submitBtn = document.createElement('button');
+  submitBtn.innerHTML = "Submit";
+  submitBtn.setAttribute('id', 'continueButton');
+  submitBtn.className = 'btn-util';
+  submitBtn.addEventListener('click', compareAnswers, false);
+  submitBtn.setAttribute('onmouseover', 'btnBig(this)');
+  submitBtn.setAttribute('onmouseout', 'btnSm(this)');
+  CBcontainer.appendChild(submitBtn);
+  gsap.from(submitBtn, {opacity: 0, scale: 0.6, duration: 0.6, ease: "expo"});
+}
+
+function compareAnswers(){
+  genClick.play();
+  animSuccess();
+  let initPrompt = document.getElementById('q-prompt');
+  gsap.to(initPrompt, {opacity: 0, duration: 0.8, ease: "expo"});
+  let initInput = document.getElementById('u-input');
+  gsap.to(initInput, {opacity: 0, duration: 0.8, ease: "expo"});
+  let contBtn = document.getElementById('continueButton');
+  gsap.to(contBtn, {opacity: 0, duration: 0.8, ease: "expo", onComplete: remPrompt});
+}
+
+function remPrompt(){
+  document.getElementById('continueButton').remove();
+  document.getElementById('q-prompt').remove();
+  document.getElementById('u-input').remove();
+  document.getElementById('input-cont').remove();
+
+  showResults();
+}
+
+function showResults(){
+  
+  let titleContainer = document.createElement('div');
+  titleContainer.className = 'title-container';
+  titleContainer.setAttribute('id', 'title-cont');
+  Acontainer.appendChild(titleContainer);
+
+
+  let uTitle = document.createElement('div');
+  uTitle.setAttribute('id', 'user-title');
+  let uTitleText = document.createTextNode("Your Answer");
+  uTitle.appendChild(uTitleText);
+  titleContainer.appendChild(uTitle);
+
+  let eTitle = document.createElement('div');
+  eTitle.setAttribute('id', 'expert-title');
+  let eTitleText = document.createTextNode("Expert Answer");
+  eTitle.appendChild(eTitleText);
+  titleContainer.appendChild(eTitle);
+
+  
+
+  let inputContainer = document.createElement('div');
+  inputContainer.className = 'input-container';
+  inputContainer.setAttribute('id', 'input-cont');
+  Acontainer.appendChild(inputContainer);
+
+  let userAnswer = document.createElement('div');
+  userAnswer.className = 'user-input-display';
+  let userAnswerText = document.createTextNode(userInput);
+  userAnswer.appendChild(userAnswerText);
+  inputContainer.appendChild(userAnswer);
+
+  let expertAnswer = document.createElement('div');
+  expertAnswer.className = 'expert-input-display';
+  let expertAnswerText = document.createTextNode(expertInput);
+  expertAnswer.appendChild(expertAnswerText);
+  inputContainer.appendChild(expertAnswer);
+
+  gsap.from(uTitle, {opacity: 0, scale: 0.7, duration: 1.2, delay: 0, ease: "expo"});
+  gsap.from(userAnswer, {opacity: 0, scale: 0.7, duration: 1.2, delay: 0.2, ease: "expo"});
+
+  gsap.from(eTitle, {opacity: 0, scale: 0.7, duration: 1.2, delay: 1.5, ease: "expo"});
+  gsap.from(expertAnswer, {opacity: 0, scale: 0.7, duration: 1.2, delay: 1.7, ease: "expo"});
+
+  showContButton();
 }
 
 // =======================================================
@@ -317,6 +440,11 @@ function animElementsOff(){
 // next question or final screen
 
 function removeOldQuestion(){
+  // resetting input type variables
+  inputClicked = false;
+  userInput = '';
+  expertInput = '';
+
   document.getElementById('question').remove();
   document.getElementById('continueButton').remove();
   
