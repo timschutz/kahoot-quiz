@@ -4,6 +4,17 @@ body {
     background-color: #313131;
 }
 
+@font-face {
+    font-family: Lausanne 500;
+    src: url('../fonts/500/Lausanne-500.eot');
+    src: url('../fonts/500/Lausanne-500.woff') format('woff'),
+         url('../fonts/500/Lausanne-500.woff2') format('woff2'),
+         url('../fonts/500/Lausanne-500.svg') format('svg'),
+         url('../fonts/500/Lausanne-500.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 h1{
     font-size: 18px;
     color: #000000;
@@ -11,11 +22,52 @@ h1{
     line-height: 22px;
 }
 
+.btn-start{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    background: #d8d8d8;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #313131;
+    font-size: 16px;
+    max-width: 300px;
+    padding: 10px 40px 10px 40px;
+    margin: 5px;
+    box-shadow: inset 4px 4px #ffffff;
+    border: 4px solid black;
+}
+
+.start-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/startbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-color: #009d00;
+}
+
+.start-text{
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 18px;
+    line-height: 26px;
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
 .q-container{
     display: flex;
     width: 100%;
     height: auto;
-    padding: 50px 100px 0px 100px;
+    padding: 50px 0px 0px 0px;
     background-image: url(../assets/ltbg.png);
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -23,8 +75,45 @@ h1{
     background-color: #009d00;
 }
 
+#q-img{
+    width: 50%;
+}
+
 #q-text{
-    width: auto;
+    font-family: "Press Start 2P", sans-serif;
+    width: 50%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.balloon {
+    padding: 15px; 
+    box-sizing: border-box;
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 5px #fff, 0 10px #000, 0 -5px #fff, 0 -10px #000, -5px 0 #fff,
+      -10px 0 #000, 5px 0 #fff, 10px 0 #000, 5px 5px #000, -5px -5px #000,
+      -5px 5px #000, 5px -5px #000;
+}
+
+.balloon-right:after {
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 5px;
+    height: 5px;
+}
+
+.balloon-right:after {
+    bottom: -15px;
+    right: 10%;
+    box-shadow: 5px -5px #fff, 10px -5px #fff, 15px -5px #fff, 20px -5px #fff, 25px -5px #fff,
+      0 5px #000, 5px 0px #fff, 10px 0px #fff, 15px 0px #fff, 20px 0px #fff, 25px 0px #fff,
+      5px 10px #000, 5px 5px #fff, 10px 5px #fff, 15px 5px #fff, 20px 5px #fff, 25px 5px #fff,
+      10px 15px #000, 10px 10px #fff, 15px 10px #fff, 20px 10px #fff, 25px 10px #fff, 30px 10px #fff,
+      15px 20px #000, 15px 15px #fff, 20px 15px #fff, 25px 15px #fff, 30px 15px #fff, 35px 15px #fff,
+      20px 20px #000, 25px 20px #000, 30px 20px #000, 35px 20px #000,
+      40px 20px #000, 40px 15px #000, 35px 10px #000, 30px 5px #000, 30px 0 #000;
 }
 
 #q-img{
@@ -58,22 +147,22 @@ h1{
 @keyframes anim-idle {
     from { background-position: 0px 0px; }
     to { background-position: 0px 0px; }
-  }
+}
 
-  @keyframes anim-question {
+@keyframes anim-question {
     from { background-position: -500px 0px; }
     to { background-position: -2500px 0px; }
-  }
+}
 
-  @keyframes anim-success {
+@keyframes anim-success {
     from { background-position: -2500px 0px; }
     to { background-position: -3500px 0px; }
-  }
+}
 
-  @keyframes anim-fail {
+@keyframes anim-fail {
     from { background-position: -3500px 0px; }
     to { background-position: -5500px 0px; }
-  }
+}
 
 #a-text{
     display: flex;
@@ -83,32 +172,57 @@ h1{
     margin-top: 40px;
 }
 
-.is-primary{
-    font-size: 14px;
+.btn-global{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    background: #005fe4;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
     max-width: 300px;
-    padding: 15px 20px 15px 20px;
+    padding: 25px 20px 25px 20px;
     margin: 5px;
+    box-shadow: inset 4px 4px #1f84ff;
+    border: 4px solid black;
 }
 
-.is-success{
-    font-size: 14px;
+.btn-util{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    background: #d8d8d8;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #313131;
+    font-size: 16px;
     max-width: 300px;
-    padding: 15px 20px 15px 20px;
+    padding: 30px 40px 30px 40px;
     margin: 5px;
+    box-shadow: inset 4px 4px #ffffff;
+    border: 4px solid black;
 }
 
-.is-error{
-    font-size: 14px;
-    max-width: 300px;
-    padding: 15px 20px 15px 20px;
-    margin: 5px;
+.btn-success{
+    background: #009d00;
+    color: white;
+    box-shadow: inset 4px 4px #4fe709;
 }
 
-.is-disabled{
-    font-size: 14px;
-    max-width: 300px;
-    padding: 15px 20px 15px 20px;
-    margin: 5px;
+.btn-fail{
+    background: #ff4e00;
+    color: white;
+    box-shadow: inset 4px 4px #ff7b47;
+}
+
+.btn-disabled{
+    cursor: auto;
+    background: #727272;
+    color: #505050;
+    box-shadow: inset 4px 4px #969696;
+}
+
+.btn-kill-pointer{
+    cursor: auto;
 }
 
 #cont{
@@ -118,10 +232,155 @@ h1{
 }
 
 #continueButton{
-    padding: 15px 25px 15px 25px;
-    margin-top: 30px;
-    font-size: 14px;
+    padding: 8px 30px 8px 30px;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
+#q-prompt{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #808080;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
 
-  
+.multi-global{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    text-align: left;
+    align-items: center;
+    color: #cecece;
+    background: #313131;
+    cursor: pointer;
+    border: none;
+    line-height: 20px;
+    margin: 0px 200px 15px 200px;
+    padding-left: 75px;
+}
+
+.btn-multi{
+    background-image: url(../assets/multi_up.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected{
+    background-image: url(../assets/multi_sel.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected_correct{
+    background-image: url(../assets/multi_sel_correct.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-selected_incorrect{
+    background-image: url(../assets/multi_sel_incorrect.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-up_correct{
+    background-image: url(../assets/multi_up_correct.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-up_incorrect{
+    background-image: url(../assets/multi_up_incorrect.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.btn-multi-hover{
+    background-image: url(../assets/multi_hover.png);
+    background-size: 58px 37px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.input-container{
+    display: flex;
+}
+
+.user-input{
+    background: #464646;
+    border-left: solid #005fe4 6px;
+    /* border: none; */
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 350px;
+    height: 150px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 16px;
+    color: #cecece;
+    resize: none;
+    padding: 15px;
+}
+
+.title-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.user-input-display{
+    width: 350px;
+    height: 150px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 16px;
+    color: #808080;
+    padding: 20px;
+    margin: 15px;
+}
+
+.expert-input-display{
+    border-style: solid;
+    border-color: #383838;
+    border-width: 2px;
+    width: 350px;
+    height: 150px;
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 16px;
+    color: #cecece;
+    padding: 20px;
+    margin: 15px;
+}
+
+#user-title{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 18px;
+    color: #313131;
+    background: #808080;
+    padding: 15px 40px 15px 40px;
+    margin-right: 120px;
+}
+
+#expert-title{
+    font-family: 'Lausanne 500', Arial, sans-serif;
+    font-size: 18px;
+    color: #313131;
+    background: #cecece;
+    padding: 15px 40px 15px 40px;
+    margin-left: 120px;
+}

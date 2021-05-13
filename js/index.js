@@ -1,8 +1,12 @@
+// init scorm
+
+pipwerks.SCORM.init();
+
 var genClick = new Howl({src: ['audio/mfx_tic33.mp3']});
 var sndCorrect = new Howl({src: ['audio/535840__evretro__8-bit-mini-win-sound-effect.mp3']});
 var sndIncorrect = new Howl({src: ['audio/450616__breviceps__8-bit-error.mp3']});
 var sndComplete = new Howl({src: ['audio/complete.mp3']});
-// var bgLoop = new Howl({src: ['audio/bg_loop2.ogg'],loop: true,});
+var bgLoop = new Howl({src: ['audio/bg_loop2.ogg'],loop: true,});
 
 let Qcontainer = document.getElementById('q-text');
 let Acontainer = document.getElementById('a-text');
@@ -10,6 +14,7 @@ let CBcontainer = document.getElementById('cont');
 let STARTbutton = document.getElementById('start');
 let STARTcontainer = document.getElementById('start-container');
 let ANIMcontainer = document.getElementById('q-sheet');
+let Qtracker = document.getElementById('tracker');
 
 let xml = '';
 let numQuestions = 0;
@@ -18,10 +23,10 @@ let multiClicked = false;
 let inputClicked = false;
 let userInput = '';
 let expertInput = '';
+let currScore = 0;
+let passingScore = 0;
+let trackerArray = [];
 
-// init scorm
-
-pipwerks.SCORM.init();
 
 // loading the XML
 
@@ -57,8 +62,9 @@ function startPage(xml){
 
 function beginQuiz(xml){
   genClick.play();
+  buildTracker(xml);
   buildQuestionElements(xml);
-  // bgLoop.play();
+  bgLoop.play();
   gsap.to(STARTcontainer, {opacity: 0, duration: 2, ease: "expo", onComplete: remStart});
 }
 
@@ -68,7 +74,24 @@ function remStart(){
   STARTcontainer.remove();
 }
 
+//building tracker
+
+function buildTracker(x){
+  let answerData = x.children[0].getElementsByTagName('question');
+
+  for(let i=0; i<answerData.length; i++){
+    let trackerSquare = document.createElement('div');
+    trackerSquare.setAttribute('id', 'trackerSquare');
+    Qtracker.appendChild(trackerSquare);
+    trackerArray.push(trackerSquare);
+    gsap.from(trackerSquare, {opacity: 0, duration: 1.2, delay: 1, ease: "expo"});
+  }
+}
+
 function buildQuestionElements(x){
+  trackerArray[qNum].setAttribute('id', 'trackerSquareComplete');
+  gsap.to(trackerArray[qNum], {scale: 1.5, duration: 0.5, ease: "expo"});
+  gsap.to(trackerArray[qNum], {scale: 1, duration: 0.5, delay: 0.5, ease: "expo"});
 
   // extract question text and display
 
@@ -80,7 +103,7 @@ function buildQuestionElements(x){
   Qcontainer.appendChild(questionBlock);
   gsap.from(Qcontainer, {opacity: 0, scale: 0.2, duration: 1, delay: 1, ease: "expo", onComplete: animQuestion});
 
-  let qType = questionData[qNum].getAttribute('type');
+  let qType = questionData[qNum].getAttribute('type'); 
 
   if(qType == 'multi'){
     let qPrompt = document.createElement('div');
@@ -101,6 +124,8 @@ function buildQuestionElements(x){
   //extract answers text and display
 
   let answerData = x.children[0].children[qNum].getElementsByTagName('answer');
+  let passingScore = x.children[0].getAttribute('passingScore');
+  console.log('PASSING SCORE IS: ' + passingScore);
 
   // extracting the expert answer for the user input type
   expertInput = answerData[0].innerHTML;
@@ -134,6 +159,19 @@ function buildQuestionElements(x){
       displayInputBox();
     }
   }
+  
+  // =======================================================
+  // ===================== SCORM DATA ======================
+  // =======================================================
+
+  let currentQuestion = Number(qNum) + 1;
+  pipwerks.SCORM.set('cmi.core.lesson_location', currentQuestion);
+  pipwerks.SCORM.set('cmi.core.score.min', 0);
+  pipwerks.SCORM.set('cmi.core.score.max', numQuestions);
+  pipwerks.SCORM.save();
+
+  console.log('There are ' + numQuestions + ' questions total');
+  console.log('You are on question ' + currentQuestion + ' of ' + numQuestions);
 }
 
 // =======================================================
@@ -242,6 +280,15 @@ function showResults(){
   gsap.from(expertAnswer, {opacity: 0, scale: 0.7, duration: 1.2, delay: 1.7, ease: "expo"});
 
   showContButton();
+
+  // =======================================================
+  // ===================== SCORM DATA ======================
+  // =======================================================
+
+  currScore = currScore + 1;
+  pipwerks.SCORM.set('cmi.core.score.raw', currScore);
+  console.log('You have ' + currScore + ' out of ' + numQuestions + ' questions correct');
+  pipwerks.SCORM.save();
 }
 
 // =======================================================
@@ -308,6 +355,14 @@ function checkMultiCorrect(){
   if(anyCorrect == true){
     sndCorrect.play();
     animSuccess();
+    // =======================================================
+    // ===================== SCORM DATA ======================
+    // =======================================================
+
+    currScore = currScore + 1;
+    pipwerks.SCORM.set('cmi.core.score.raw', currScore);
+    console.log('You have ' + currScore + ' out of ' + numQuestions + ' questions correct');
+    pipwerks.SCORM.save();
   }else{
     sndIncorrect.play();
     animFail();
@@ -371,6 +426,15 @@ function correct(){
 
   showContButton();
   animSuccess();
+
+  // =======================================================
+  // ===================== SCORM DATA ======================
+  // =======================================================
+
+  currScore = currScore + 1;
+  pipwerks.SCORM.set('cmi.core.score.raw', currScore);
+  console.log('You have ' + currScore + ' out of ' + numQuestions + ' questions correct');
+  pipwerks.SCORM.save();
 }
 
 // if incorrect, do this
@@ -399,6 +463,8 @@ function incorrect(x){
 
   showContButton();
   animFail();
+
+  console.log('You have ' + currScore + ' out of ' + numQuestions + ' questions correct');
 }
 
 // display continue button
@@ -457,14 +523,26 @@ function removeOldQuestion(){
   
   if(qNum == numQuestions - 1){
     
-    pipwerks.SCORM.status("set", "completed");
-    // pipwerks.SCORM.quit();
+    // =======================================================
+    // ===================== SCORM DATA ======================
+    // =======================================================
 
-    // bgLoop.pause();
+    let passingScoreCalc = currScore / numQuestions;
+    if(passingScoreCalc > passingScore){
+      pipwerks.SCORM.set('cmi.core.lesson_status', 'passed');
+    }else{
+      pipwerks.SCORM.set('cmi.core.lesson_status', 'failed');
+    }
+    
+    pipwerks.SCORM.save();
+
+    bgLoop.pause();
 
     animSuccess();
 
     sndComplete.play();
+
+    document.getElementById('tracker').remove();
 
     let finalDiv = document.createElement('h1');
     finalDiv.className = 'balloon balloon-right';

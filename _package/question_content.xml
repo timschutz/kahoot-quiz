@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<allQuestions>
-		<question txt="What does the “https://” at the beginning of a URL denote?">
+		<question type='single' txt="What does the “https://” at the beginning of a URL denote?">
 			<answer>That the site has special high definition</answer>
 			<answer id="correct">That information entered into the site is encrypted</answer>
 			<answer>That the site is the newest version available</answer>
 			<answer>That the site is not accessible to certain computers</answer>
 			<answer>None of the above</answer>
 		</question>
-		<question txt="Which of the following is an example of a “phishing” attack?">
-			<answer>Sending someone an email that contains a malicious link that is disguised to look like an email from someone the person knows</answer>
-			<answer>Creating a fake website that looks nearly identical to a real website in order to trick users into entering their login information</answer>
-			<answer>Sending someone a text message that contains a malicious link that is disguised to look like a notification that the person has won a contest</answer>
-			<answer id="correct">All of the above</answer>
-			<answer>Not sure</answer>
+		<!-- <question type='multi' txt="Which of the following is an example of a “phishing” attack?">
+			<answer id="correct">Sending someone an email that contains a malicious link that is disguised to look like an email from someone the person knows</answer>
+			<answer id="correct">Creating a fake website that looks nearly identical to a real website in order to trick users into entering their login information</answer>
+			<answer id="correct">Sending someone a text message that contains a malicious link that is disguised to look like a notification that the person has won a contest</answer>
+			<answer>Telling someone over the phone that they’ve won a prize and in order to redeem it shipping and handling must be paid.</answer>
 		</question>
-		<question txt="A group of computers that is networked together and used by hackers to steal information is called a…">
+		<question type='input' txt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada neque quis neque mollis ullamcorper. Fusce fermentum tempus varius?">
+			<answer>In posuere quis lacus ac gravida. Suspendisse potenti. Fusce eu semper enim. Nam rhoncus felis at dignissim elementum. Nullam accumsan, nisl id tincidunt finibus, sem sapien vestibulum est, ac consequat nulla purus sit amet augue. Quisque gravida egestas augue, aliquam commodo lacus finibus et. Vestibulum posuere mollis dolor, id gravida dui commodo nec.</answer>
+		</question> -->
+		<question type='single' txt="A group of computers that is networked together and used by hackers to steal information is called a…">
 			<answer id="correct">Botnet</answer>
 			<answer>Rootkit</answer>
 			<answer>DDoS</answer>
 			<answer>Operating system</answer>
 			<answer>Not sure</answer>
 		</question>
-		<question txt="Which of the following four passwords is the most secure?">
+		<question type='single' txt="Which of the following four passwords is the most secure?">
 			<answer>Boat123</answer>
 			<answer id="correct">WTh!5Z</answer>
 			<answer>into*48</answer>
 			<answer>123456</answer>
 		</question>
-		<question txt="Criminals access someone’s computer and encrypt the user’s personal files and data. The user is unable to access this data unless they pay the criminals to decrypt the files. This practice is called …">
+		<question type='single' txt="Criminals access someone’s computer and encrypt the user’s personal files and data. The user is unable to access this data unless they pay the criminals to decrypt the files. This practice is called …">
 			<answer>Botnet</answer>
 			<answer id="correct">Ransomware</answer>
 			<answer>Driving</answer>
 			<answer>Spam</answer>
 			<answer>None of the above</answer>
 			<answer>Not sure</answer>
+		</question>
+		<question type='single' txt="Which of the following four passwords is the most secure?">
+			<answer>Boat123</answer>
+			<answer id="correct">WTh!5Z</answer>
+			<answer>into*48</answer>
+			<answer>123456</answer>
 		</question>
 	</allQuestions>
 	

@@ -67,12 +67,31 @@ h1{
     display: flex;
     width: 100%;
     height: auto;
-    padding: 50px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
     background-image: url(../assets/ltbg.png);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: top center;
     background-color: #009d00;
+}
+
+#tracker{
+    display: flex;
+    justify-content: center;
+}
+
+#trackerSquare{
+    margin: 20px 5px 0px 5px;
+    height: 8px;
+    width: 8px;
+    background-color: #3E3E3E;
+}
+
+#trackerSquareComplete{
+    margin: 20px 5px 0px 5px;
+    height: 8px;
+    width: 8px;
+    background-color: #808080;
 }
 
 #q-img{
@@ -169,7 +188,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .btn-global{

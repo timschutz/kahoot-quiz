@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<allQuestions>
+	<!-- use the passingScore variable below to set number needed to pass. only used for internal purposes at the moment -->
+	<allQuestions passingScore='4'>
+		<!-- 
+		question types available:
+		single
+		multi
+		input
+		-->
 		<question type='single' txt="What does the “https://” at the beginning of a URL denote?">
 			<answer>That the site has special high definition</answer>
 			<answer id="correct">That information entered into the site is encrypted</answer>
