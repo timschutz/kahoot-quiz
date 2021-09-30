@@ -64,7 +64,7 @@ function beginQuiz(xml){
   genClick.play();
   buildTracker(xml);
   buildQuestionElements(xml);
-  bgLoop.play();
+  // bgLoop.play();
   gsap.to(STARTcontainer, {opacity: 0, duration: 2, ease: "expo", onComplete: remStart});
 }
 
